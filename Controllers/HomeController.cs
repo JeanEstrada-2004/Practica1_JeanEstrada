@@ -47,7 +47,7 @@ public class HomeController : Controller
 
         // Enviar resultado a la vista
         ViewBag.Resultado = $"{monto} {monedaOrigen} equivale a {montoConvertido:F2} {monedaDestino}";
-        return View("Index");
+        return RedirectToAction("Boleta", new { montoConvertido, monedaDestino });
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -55,4 +55,25 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+    public IActionResult Boleta(decimal montoConvertido, string monedaDestino)
+    {
+        ViewBag.MontoConvertido = montoConvertido;
+        ViewBag.MonedaDestino = monedaDestino;
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult GenerarBoleta(string nombre, string dni, string email, decimal montoConvertido, string monedaDestino)
+    {
+        ViewBag.Nombre = nombre;
+        ViewBag.DNI = dni;
+        ViewBag.Email = email;
+        ViewBag.MontoConvertido = montoConvertido;
+        ViewBag.MonedaDestino = monedaDestino;
+
+        return View("BoletaGenerada");
+    }
+
+
 }
