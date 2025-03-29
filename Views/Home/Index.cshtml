@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Conversor de Divisas";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Conversor de Divisas</h1>
+    <p>Ingrese el monto y seleccione las monedas para realizar la conversión.</p>
+
+    <form asp-action="ConvertirMoneda" method="post">
+        <div>
+            <label for="monto">Monto:</label>
+            <input type="number" step="0.01" id="monto" name="monto" required>
+        </div>
+
+        <div>
+            <label for="monedaOrigen">Moneda Origen:</label>
+            <select id="monedaOrigen" name="monedaOrigen">
+                <option value="USD">Dólares (USD)</option>
+                <option value="PEN">Soles (PEN)</option>
+                <option value="BRL">Reales (BRL)</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="monedaDestino">Moneda Destino:</label>
+            <select id="monedaDestino" name="monedaDestino">
+                <option value="USD">Dólares (USD)</option>
+                <option value="PEN">Soles (PEN)</option>
+                <option value="BRL">Reales (BRL)</option>
+            </select>
+        </div>
+
+        <button type="submit">Convertir</button>
+    </form>
+</div>
