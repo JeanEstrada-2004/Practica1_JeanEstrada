@@ -26,27 +26,24 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult ConvertirMoneda(decimal monto, string monedaOrigen, string monedaDestino)
     {
-        // Diccionario con tasas de cambio simuladas (1 unidad de cada moneda en USD)
+        // Tasas de cambio ajustadas para conversión directa de BRL a PEN
         var tasasCambio = new Dictionary<string, decimal>
         {
-            { "USD", 1.0m },   // Dólar estadounidense
-            { "PEN", 0.27m },  // Sol peruano
-            { "BRL", 0.20m }   // Real brasileño
+            { "BRL", 1.00m },  // Real Brasileño como base
+            { "PEN", 0.74m }   // 1 BRL = 0.74 PEN (ejemplo, actualizar con tasa real)
         };
 
-        // Verificar si las monedas existen en el diccionario
+        // Validar monedas
         if (!tasasCambio.ContainsKey(monedaOrigen) || !tasasCambio.ContainsKey(monedaDestino))
         {
             ViewBag.Resultado = "Moneda no válida.";
             return View("Index");
         }
 
-        // Convertir a USD y luego a la moneda destino
-        decimal montoEnUsd = monto / tasasCambio[monedaOrigen];
-        decimal montoConvertido = montoEnUsd * tasasCambio[monedaDestino];
+        // Realizar conversión directa
+        decimal montoConvertido = monto * (tasasCambio[monedaDestino] / tasasCambio[monedaOrigen]);
 
-        // Enviar resultado a la vista
-        ViewBag.Resultado = $"{monto} {monedaOrigen} equivale a {montoConvertido:F2} {monedaDestino}";
+        // Redirigir a la vista de boleta
         return RedirectToAction("Boleta", new { montoConvertido, monedaDestino });
     }
 
@@ -74,6 +71,4 @@ public class HomeController : Controller
 
         return View("BoletaGenerada");
     }
-
-
 }
