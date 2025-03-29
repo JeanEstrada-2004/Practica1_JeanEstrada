@@ -95,3 +95,4 @@ C:\TAREA PROGRAMACIÓN 1\SEMANA 4\PRACTICA I\Practica1_JeanEstrada\obj\Debug\net
 C:\TAREA PROGRAMACIÓN 1\SEMANA 4\PRACTICA I\Practica1_JeanEstrada\obj\Debug\net9.0\Practica1_JeanEstrada.pdb
 C:\TAREA PROGRAMACIÓN 1\SEMANA 4\PRACTICA I\Practica1_JeanEstrada\obj\Debug\net9.0\Practica1_JeanEstrada.genruntimeconfig.cache
 C:\TAREA PROGRAMACIÓN 1\SEMANA 4\PRACTICA I\Practica1_JeanEstrada\obj\Debug\net9.0\ref\Practica1_JeanEstrada.dll
+C:\TAREA PROGRAMACIÓN 1\SEMANA 4\PRACTICA I\Practica1_JeanEstrada\obj\Debug\net9.0\Practica1_JeanEstrada.sourcelink.json

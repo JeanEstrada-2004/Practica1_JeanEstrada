@@ -23,9 +23,57 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpPost]
+    public IActionResult ConvertirMoneda(decimal monto, string monedaOrigen, string monedaDestino)
+    {
+        // Diccionario con tasas de cambio simuladas (1 unidad de cada moneda en USD)
+        var tasasCambio = new Dictionary<string, decimal>
+        {
+            { "USD", 1.0m },   // Dólar estadounidense
+            { "PEN", 0.27m },  // Sol peruano
+            { "BRL", 0.20m }   // Real brasileño
+        };
+
+        // Verificar si las monedas existen en el diccionario
+        if (!tasasCambio.ContainsKey(monedaOrigen) || !tasasCambio.ContainsKey(monedaDestino))
+        {
+            ViewBag.Resultado = "Moneda no válida.";
+            return View("Index");
+        }
+
+        // Convertir a USD y luego a la moneda destino
+        decimal montoEnUsd = monto / tasasCambio[monedaOrigen];
+        decimal montoConvertido = montoEnUsd * tasasCambio[monedaDestino];
+
+        // Enviar resultado a la vista
+        ViewBag.Resultado = $"{monto} {monedaOrigen} equivale a {montoConvertido:F2} {monedaDestino}";
+        return RedirectToAction("Boleta", new { montoConvertido, monedaDestino });
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+    public IActionResult Boleta(decimal montoConvertido, string monedaDestino)
+    {
+        ViewBag.MontoConvertido = montoConvertido;
+        ViewBag.MonedaDestino = monedaDestino;
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult GenerarBoleta(string nombre, string dni, string email, decimal montoConvertido, string monedaDestino)
+    {
+        ViewBag.Nombre = nombre;
+        ViewBag.DNI = dni;
+        ViewBag.Email = email;
+        ViewBag.MontoConvertido = montoConvertido;
+        ViewBag.MonedaDestino = monedaDestino;
+
+        return View("BoletaGenerada");
+    }
+
+
 }
