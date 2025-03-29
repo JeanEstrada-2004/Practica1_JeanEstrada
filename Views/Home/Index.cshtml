@@ -4,7 +4,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Conversor de Divisas</h1>
-    <p>Ingrese el monto y seleccione las monedas para realizar la conversión.</p>
+    <p>Ingrese el monto para realizar la conversión de Reales (BRL) a Soles (PEN).</p>
 
     <form asp-action="ConvertirMoneda" method="post">
         <div>
@@ -15,18 +15,14 @@
         <div>
             <label for="monedaOrigen">Moneda Origen:</label>
             <select id="monedaOrigen" name="monedaOrigen">
-                <option value="USD">Dólares (USD)</option>
-                <option value="PEN">Soles (PEN)</option>
-                <option value="BRL">Reales (BRL)</option>
+                <option value="BRL" selected>Reales (BRL)</option>
             </select>
         </div>
 
         <div>
             <label for="monedaDestino">Moneda Destino:</label>
             <select id="monedaDestino" name="monedaDestino">
-                <option value="USD">Dólares (USD)</option>
-                <option value="PEN">Soles (PEN)</option>
-                <option value="BRL">Reales (BRL)</option>
+                <option value="PEN" selected>Soles (PEN)</option>
             </select>
         </div>
 

@@ -24,29 +24,16 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult ConvertirMoneda(decimal monto, string monedaOrigen, string monedaDestino)
+    public IActionResult ConvertirMoneda(decimal monto)
     {
-        // Diccionario con tasas de cambio simuladas (1 unidad de cada moneda en USD)
-        var tasasCambio = new Dictionary<string, decimal>
-        {
-            { "USD", 1.0m },   // Dólar estadounidense
-            { "PEN", 0.27m },  // Sol peruano
-            { "BRL", 0.20m }   // Real brasileño
-        };
+        // Tasa de cambio de Real Brasileño (BRL) a Sol Peruano (PEN)
+        decimal tasaCambioBRLtoPEN = 0.634m;
 
-        // Verificar si las monedas existen en el diccionario
-        if (!tasasCambio.ContainsKey(monedaOrigen) || !tasasCambio.ContainsKey(monedaDestino))
-        {
-            ViewBag.Resultado = "Moneda no válida.";
-            return View("Index");
-        }
-
-        // Convertir a USD y luego a la moneda destino
-        decimal montoEnUsd = monto / tasasCambio[monedaOrigen];
-        decimal montoConvertido = montoEnUsd * tasasCambio[monedaDestino];
+        // Realizar la conversión
+        decimal montoConvertido = monto * tasaCambioBRLtoPEN;
 
         // Enviar resultado a la vista
-        ViewBag.Resultado = $"{monto} {monedaOrigen} equivale a {montoConvertido:F2} {monedaDestino}";
+        ViewBag.Resultado = $"{monto} BRL equivale a {montoConvertido:F2} PEN";
         return View("Index");
     }
 
