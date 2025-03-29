@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Practica1_JeanEstrada")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6128d440133742e0b649182e5bab62574ea5953")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83ae5273533482a63c778b942ed0e1eeb78f5de7")]
+>>>>>>> enviasrecibe
 [assembly: System.Reflection.AssemblyProductAttribute("Practica1_JeanEstrada")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Practica1_JeanEstrada")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
